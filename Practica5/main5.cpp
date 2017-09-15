@@ -128,11 +128,95 @@ void display ( void )   // Creamos la funcion donde se dibuja
 	glRotatef(angleY, 0.0, 1.0, 0.0);
 	glRotatef(angleX, 1.0, 0.0, 0.0);
 	//Poner Código Aquí.
-
+	//cabeza
+		glPushMatrix();	
+		glTranslatef(0.0,-0.5,0.0);
+			glColor3f(1.0,1.0,0.2);
+			prisma();//0,0
+		glPopMatrix();	
+		//torso
+		glPushMatrix();	
+			glColor3f(1.0,1.0,1.0);
+			glTranslatef(0.0,-2.5,0.0);
+			glScalef(3.0,3.0,1.0);
+			prisma();
+		glPopMatrix();
+		//manos
+		glPushMatrix();	
+			glColor3f(0.0,0.0,1.0);
+			glTranslatef(3.0,-1.5,0.0);
+			glScalef(-3.0,-1.0,1.0);
+			//prisma();
+		glPopMatrix();	
+		glPushMatrix();	
+			glColor3f(0.0,0.0,1.0);
+			glTranslatef(-3.0,-1.5,0.0);
+			glScalef(3.0,1.0,1.0);
+			prisma();
+		glPopMatrix();
+		glPushMatrix();	
+		glColor3f(0.0,1.0,1.0);
+			glTranslatef(-3.0,-1.5,0.0);
+			glScalef(3.0,1.0,1.0);
+			prisma();
+		glPopMatrix();
+		//piernas
+		glPushMatrix();	
+			glColor3f(0.0,1.0,1.0);
+			glTranslatef(-1.0,-7.5,0.0);
+			glScalef(1.0,7.0,1.0);
+			prisma();
+		glPopMatrix();
+		glPushMatrix();	
+			glColor3f(0.0,1.0,1.0);
+			glTranslatef(1.0,-7.5,0.0);
+			glScalef(1.0,7.0,1.0);
+			prisma();
+		glPopMatrix();
+		//mano
+		glPushMatrix();	
+			glColor3f(0.0,1.0,1.0);
+			glTranslatef(5.5,-1.5,0.0);
+			glScalef(2.0,2.0,1.0);
+			//prisma();
+		glPopMatrix();
+		glPushMatrix();	
+			glColor3f(0.0,1.0,1.0);
+			glTranslatef(-5.5,-1.5,0.0);
+			glScalef(2.0,2.0,1.0);
+			prisma();
+		glPopMatrix();
+		//pies
+		glPushMatrix();	
+			glColor3f(0.0,1.0,1.0);
+			glTranslatef(2.0,-12.5,0.0);
+			glScalef(3.0,3.0,1.0);
+			prisma();
+		glPopMatrix();
+		glPushMatrix();	
+			glColor3f(0.0,1.0,1.0);
+			glTranslatef(-2.0,-12.5,0.0);
+			glScalef(3.0,3.0,1.0);
+			prisma();
+		glPopMatrix();
 	//brazo detallado
+		glTranslatef(1.85,-1.5,0.0);
 	glPushMatrix();
 	//rotar hombro
-	glRotatef(angHombro,0.0,0.0,1.0);//Tt--Yy
+	//glTranslatef(3.0,-1.5,0.0);
+	if((angHombro>=-20.0)&&(angHombro<=180.0))
+		glRotatef(angHombro,0.0,0.0,1.0);//Tt--Yy
+	else if(angHombro<-20.0)
+		{
+		glRotatef(-20.0,0.0,0.0,1.0);
+		angHombro=-20.0;
+		}
+	else if(angHombro>180.0)
+		{
+		glRotatef(180.0,0.0,0.0,1.0);
+		angHombro=180.0;
+		}
+	//glRotatef(angHombro,0.0,0.0,1.0);//Tt--Yy
 	//hombro
 		glPushMatrix();
 			glColor3f(0.0,1.0,0.0);
@@ -149,7 +233,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 		//codo
 		//rotar codo
 		glTranslatef(0.0,-0.75,0.0);
-		glRotatef(angCodo,0.0,0.0,1.0);//Uu--Ii
+		if((angCodo>=0.0)&&(angCodo<=120.0))
+			glRotatef(angCodo,0.0,0.0,1.0);//Uu--Ii
+		else if(angCodo<0.0)
+			{
+			glRotatef(0.0,0.0,0.0,1.0);//Uu--Ii
+			angCodo=0.0;
+			}
+		else if(angCodo>120.0)
+			{
+			glRotatef(120.0,0.0,0.0,1.0);//Uu--Ii
+			angCodo=120.0;
+			}
+		//glRotatef(angCodo,0.0,0.0,1.0);//Uu--Ii
 		glPushMatrix();
 			glColor3f(0.0,1.0,0.0);
 			glScalef(0.5,0.5,0.5);
@@ -163,18 +259,43 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			prisma();
 		glPopMatrix();
 		//mano
-		glTranslatef(0.0,-0.75,0.0);
+		glTranslatef(0.0,-0.375,0.0);
 		//rotar mano
-		glRotatef(angMano,0.0,0.0,1.0);//Oo--Pp
+		if((angMano>=-50.0)&&(angMano<=10.0))
+			glRotatef(angMano,1.0,0.0,0.0);//Oo--Pp
+		else if(angMano<-50.0)
+			{
+			glRotatef(-50.0,1.0,0.0,0.0);//Oo--Pp
+			angMano=-50.0;
+			}
+		else if(angMano>10.0)
+			{
+			glRotatef(10.0,1.0,0.0,0.0);//Oo--Pp
+			angMano=10.0;
+			}
+		//glRotatef(angMano,0.0,0.0,1.0);//Oo--Pp
+		glTranslatef(0.0,-0.375,0.0);
 		glPushMatrix();
 			glColor3f(0.0,0.0,1.0);
-			glScalef(0.5,0.5,0.3);
+			glScalef(0.5,0.5,0.2);
 			prisma();
 		glPopMatrix();
 		//dedo--pulgar		
 		glPushMatrix();
 			glTranslatef(0.25,0.0,0.0);
-			glRotatef(angPulgar1,0.0,1.0,0.0);//L--l
+			if((angPulgar1>=-50.0)&&(angPulgar1<=0.0))
+				glRotatef(angPulgar1,0.0,1.0,0.0);//L--l
+			else if(angPulgar1<-50.0)
+				{
+				glRotatef(-50.0,0.0,1.0,0.0);//L--l
+				angPulgar1=-50.0;
+				}
+			else if(angPulgar1>0.0)
+				{
+				glRotatef(0.0,0.0,1.0,0.0);//L--l
+				angPulgar1=0.0;
+				}
+			//glRotatef(angPulgar1,0.0,1.0,0.0);//L--l
 			glTranslatef(0.1,0.1,0.0);			
 			//p1
 			glPushMatrix();
@@ -184,7 +305,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//p2
 			glTranslatef(0.1,0.0,0.0);
-			glRotatef(angPulgar2,0.0,1.0,0.0);//M--m
+			if((angPulgar2>=-70.0)&&(angPulgar2<=0.0))
+				glRotatef(angPulgar2,0.0,1.0,0.0);//M--m
+			else if(angPulgar2<-70.0)
+				{
+				glRotatef(-70.0,0.0,1.0,0.0);//M--m
+				angPulgar2=-70.0;
+				}
+			else if(angPulgar2>0.0)
+				{
+				glRotatef(0.0,0.0,1.0,0.0);//M--m
+				angPulgar2=0.0;
+				}
+			//glRotatef(angPulgar2,0.0,1.0,0.0);//M--m
 			glTranslatef(0.1,0.0,0.0);
 			glPushMatrix();
 				glColor3f(1.0,0.0,0.0);
@@ -195,7 +328,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 		//dedo2
 		glPushMatrix();		
 			glTranslatef(0.25,-0.175,0.0);
-			glRotatef(angDedo21,1.0,0.0,0.0);//N--n
+			if((angDedo21>=-60.0)&&(angDedo21<=0.0))
+				glRotatef(angDedo21,1.0,0.0,0.0);//N--n
+			else if(angDedo21<-60.0)
+				{
+				angDedo21=-60.0;
+				glRotatef(angDedo21,1.0,0.0,0.0);//N--n
+				}
+			else if(angDedo21>0.0)
+				{
+				angDedo21=0.0;
+				glRotatef(angDedo21,1.0,0.0,0.0);//N--n
+				}
+			//glRotatef(angDedo21,1.0,0.0,0.0);//N--n
 			glTranslatef(0.0,-0.175,0.0);
 			glPushMatrix();
 				glColor3f(1.0,0.0,0.1);
@@ -204,7 +349,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//2
 			glTranslatef(0.0,-0.1,0.0);
-			glRotatef(angDedo22,1.0,0.0,0.0);//B--b
+			if((angDedo22>=-90.0)&&(angDedo22<=0.0))
+				glRotatef(angDedo22,1.0,0.0,0.0);//B--b
+			else if(angDedo22<-90.0)
+				{
+				angDedo22=-90.0;
+				glRotatef(angDedo22,1.0,0.0,0.0);//B--b
+				}
+			else if(angDedo22>0.0)
+				{
+				angDedo22=0.0;
+				glRotatef(angDedo22,1.0,0.0,0.0);//B--b
+				}
+			//glRotatef(angDedo22,1.0,0.0,0.0);//B--b
 			glTranslatef(0.0,-0.1,0.0);
 			glPushMatrix();
 				glColor3f(0.0,1.0,0.0);
@@ -213,7 +370,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//3
 			glTranslatef(0.0,-0.1,0.0);
-			glRotatef(angDedo23,1.0,0.0,0.0);//V--v
+			if((angDedo23>=-85.0)&&(angDedo23<=0.0))
+				glRotatef(angDedo23,1.0,0.0,0.0);//V--v
+			else if(angDedo23<-85.0)
+				{
+				angDedo23=-85.0;
+				glRotatef(angDedo23,1.0,0.0,0.0);//V--v
+				}
+			else if(angDedo23>0.0)
+				{
+				angDedo23=0.0;
+				glRotatef(angDedo23,1.0,0.0,0.0);//V--v
+				}
+			//glRotatef(angDedo23,1.0,0.0,0.0);//V--v
 			glTranslatef(0.0,-0.1,0.0);
 			glPushMatrix();
 				glColor3f(0.0,0.0,1.0);
@@ -224,7 +393,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 		//dedo3
 		glPushMatrix();		
 			glTranslatef(0.1,-0.2,0.0);
-			glRotatef(angDedo31,1.0,0.0,0.0);//C--c
+			if((angDedo31>=-85.0)&&(angDedo31<=0.0))
+				glRotatef(angDedo31,1.0,0.0,0.0);//C--c
+			else if(angDedo31<-85.0)
+				{
+				angDedo31=-85.0;
+				glRotatef(angDedo31,1.0,0.0,0.0);//C--c
+				}
+			else if(angDedo31>0.0)
+				{
+				angDedo31=0.0;
+				glRotatef(angDedo31,1.0,0.0,0.0);//C--c
+				}
+			//glRotatef(angDedo31,1.0,0.0,0.0);//C--c
 			glTranslatef(0.0,-0.2,0.0);
 			glPushMatrix();			
 				glColor3f(1.0,0.0,0.1);
@@ -233,7 +414,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//2
 			glTranslatef(0.0,-0.15,0.0);
-			glRotatef(angDedo32,1.0,0.0,0.0);//X--x
+			if((angDedo32>=-90.0)&&(angDedo32<=0.0))
+				glRotatef(angDedo32,1.0,0.0,0.0);//X--x
+			else if(angDedo32<-90.0)
+				{
+				angDedo32=-90.0;
+				glRotatef(angDedo32,1.0,0.0,0.0);//X--x
+				}
+			else if(angDedo32>0.0)
+				{
+				angDedo32=0.0;
+				glRotatef(angDedo32,1.0,0.0,0.0);//X--x
+				}
+			//glRotatef(angDedo32,1.0,0.0,0.0);//X--x
 			glTranslatef(0.0,-0.15,0.0);
 			glPushMatrix();
 				glColor3f(0.0,1.0,0.0);
@@ -242,7 +435,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//3
 			glTranslatef(0.0,-0.15,0.0);
-			glRotatef(angDedo33,1.0,0.0,0.0);//Z--z
+			if((angDedo33>=-85.0)&&(angDedo33<=0.0))
+				glRotatef(angDedo33,1.0,0.0,0.0);//Z--z
+			else if(angDedo33<-85.0)
+				{
+				angDedo33=-85.0;
+				glRotatef(angDedo33,1.0,0.0,0.0);//Z--z
+				}
+			else if(angDedo33>0.0)
+				{
+				angDedo33=0.0;
+				glRotatef(angDedo33,1.0,0.0,0.0);//Z--z
+				}
+			//glRotatef(angDedo33,1.0,0.0,0.0);//Z--z
 			glTranslatef(0.0,-0.15,0.0);
 			glPushMatrix();
 				glColor3f(0.0,0.0,1.0);
@@ -253,7 +458,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 		//dedo4
 		glPushMatrix();		
 			glTranslatef(-0.05,-0.175,0.0);
-			glRotatef(angDedo41,1.0,0.0,0.0);//J--j
+			if((angDedo41>=-85.0)&&(angDedo41<=0.0))
+				glRotatef(angDedo41,1.0,0.0,0.0);//J--j
+			else if(angDedo41<-85.0)
+				{
+				angDedo41=-85.0;
+				glRotatef(angDedo41,1.0,0.0,0.0);//J--j
+				}
+			else if(angDedo41>0.0)
+				{
+				angDedo41=0.0;
+				glRotatef(angDedo41,1.0,0.0,0.0);//J--j
+				}
+			//glRotatef(angDedo41,1.0,0.0,0.0);//J--j
 			glTranslatef(0.0,-0.175,0.0);
 			glPushMatrix();
 				glColor3f(1.0,0.0,0.1);
@@ -262,7 +479,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//2
 			glTranslatef(0.0,-0.1,0.0);
-			glRotatef(angDedo42,1.0,0.0,0.0);//H--h
+			if((angDedo42>=-90.0)&&(angDedo42<=0.0))
+				glRotatef(angDedo42,1.0,0.0,0.0);//H--h
+			else if(angDedo42<-90.0)
+				{
+				angDedo42=-90.0;
+				glRotatef(angDedo42,1.0,0.0,0.0);//H--h
+				}
+			else if(angDedo42>0.0)
+				{
+				angDedo42=0.0;
+				glRotatef(angDedo42,1.0,0.0,0.0);//H--h
+				}
+			//glRotatef(angDedo42,1.0,0.0,0.0);//H--h
 			glTranslatef(0.0,-0.1,0.0);
 			glPushMatrix();
 				glColor3f(0.0,1.0,0.0);
@@ -271,7 +500,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 			glPopMatrix();
 			//3
 			glTranslatef(0.0,-0.1,0.0);
-			glRotatef(angDedo43,1.0,0.0,0.0);//G--g
+			if((angDedo43>=-85.0)&&(angDedo43<=0.0))
+				glRotatef(angDedo43,1.0,0.0,0.0);//G--g
+			else if(angDedo43<-85.0)
+				{
+				angDedo43=-85.0;
+				glRotatef(angDedo43,1.0,0.0,0.0);//G--g
+				}
+			else if(angDedo43>0.0)
+				{
+				angDedo43=0.0;
+				glRotatef(angDedo43,1.0,0.0,0.0);//G--g
+				}
+			//glRotatef(angDedo43,1.0,0.0,0.0);//G--g
 			glTranslatef(0.0,-0.1,0.0);
 			glPushMatrix();
 				glColor3f(0.0,0.0,1.0);
@@ -282,7 +523,19 @@ void display ( void )   // Creamos la funcion donde se dibuja
 		//dedo5
 		glPushMatrix();		
 			glTranslatef(-0.2,-0.15,0.0);
-			glRotatef(angDedo51,1.0,0.0,0.0);///F--f
+			if((angDedo51>=-85.0)&&(angDedo51<=0.0))
+				glRotatef(angDedo51,1.0,0.0,0.0);///F--f
+			else if(angDedo51<-85.0)
+				{
+				angDedo51=-85.0;
+				glRotatef(angDedo51,1.0,0.0,0.0);///F--f
+				}
+			else if(angDedo51>0.0)
+				{
+				angDedo51=0.0;
+				glRotatef(angDedo51,1.0,0.0,0.0);///F--f
+				}
+			//glRotatef(angDedo51,1.0,0.0,0.0);///F--f
 			glTranslatef(0.0,-0.15,0.0);
 			glPushMatrix();
 				glColor3f(1.0,0.0,0.1);
@@ -290,18 +543,42 @@ void display ( void )   // Creamos la funcion donde se dibuja
 				prisma();
 			glPopMatrix();
 			//2
-			glTranslatef(0.0,-0.05,0.0);
-			glRotatef(angDedo52,1.0,0.0,0.0);///K--k
-			glTranslatef(0.0,-0.05,0.0);
+			glTranslatef(0.0,-0.075,0.0);
+			if((angDedo52>=-90.0)&&(angDedo52<=0.0))
+				glRotatef(angDedo52,1.0,0.0,0.0);///K--k
+			else if(angDedo52<-90.0)
+				{
+				angDedo52=-90.0;
+				glRotatef(angDedo52,1.0,0.0,0.0);///K--k
+				}
+			else if(angDedo52>0.0)
+				{
+				angDedo52=0.0;
+				glRotatef(angDedo52,1.0,0.0,0.0);///K--k
+				}
+			//glRotatef(angDedo52,1.0,0.0,0.0);///K--k
+			glTranslatef(0.0,-0.075,0.0);
 			glPushMatrix();
 				glColor3f(0.0,1.0,0.0);
 				glScalef(0.1,0.15,0.1);
 				prisma();
 			glPopMatrix();
 			//3
-			glTranslatef(0.0,-0.051,0.0);
-			glRotatef(angDedo53,1.0,0.0,0.0);///E--e
-			glTranslatef(0.0,-0.05,0.0);
+			glTranslatef(0.0,-0.075,0.0);
+			if((angDedo53>=-85.0)&&(angDedo53<=0.0))
+				glRotatef(angDedo53,1.0,0.0,0.0);///E--e
+			else if(angDedo53<-85.0)
+				{
+				angDedo53=-85.0;
+				glRotatef(angDedo53,1.0,0.0,0.0);///E--e
+				}
+			else if(angDedo53>0.0)
+				{
+				angDedo53=0.0;
+				glRotatef(angDedo53,1.0,0.0,0.0);///E--e
+				}
+			//glRotatef(angDedo53,1.0,0.0,0.0);///E--e
+			glTranslatef(0.0,-0.075,0.0);
 			glPushMatrix();
 				glColor3f(0.0,0.0,1.0);
 				glScalef(0.1,0.15,0.1);
@@ -411,9 +688,11 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 			break;
 		case 'N':
 			angDedo21 +=0.7f;
+			printf("Posicion en Z: %f\n", angDedo21);
 			break;
 		case 'n':
 			angDedo21 -=0.7f;
+			printf("Posicion en Z: %f\n", angDedo21);
 			break;
 		case 'M':
 			angPulgar2 +=0.7f;
@@ -438,10 +717,12 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 		case 't':
 		case 'T':
 			angHombro +=0.5f;
+			printf("Posicion en Z: %f\n", angHombro);
 			break;
 		case 'y':
 		case 'Y':
 			angHombro -=0.5f;
+			printf("Posicion en Z: %f\n", angHombro);
 			break;
 		case 'i':
 		case 'I':
